@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id" x-data="cartHandler()" x-init="loadFromLocalStorage()">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Form LOGIN ADMIN</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/favicon.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Satisfy:wght@400&display=swap"
+        rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <!-- Tailwind Css -->
+
+    <!-- Alpine JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body class="index-page" x-data="cartHandler()">
+    <header id="header" class="header fixed-top">
+        <div class="topbar d-flex align-items-center">
+            <div class="container d-flex justify-content-end justify-content-md-between">
+                <div class="contact-info d-flex align-items-center">
+                    <!-- <i class="bi bi-phone d-flex align-items-center d-none d-lg-block"><span>+6281215376865</span></i> -->
+                    <!-- <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"><span>Mon-Sat: 11:00 AM - 23:00
+                            PM</span></i> -->
+                </div>
+                <div class="icon-container me-3">
+                    <div class="search-container" x-data="{ open: true }">
+                        <!-- <i class="bi bi-search" @click="open = !open"></i> -->
+                        <!-- <input type="text" class="search-input form-control  ms-2" x-show="open"
+                            @click.away="open = true" /> -->
+                    </div>
+                    <!-- <i class="bi bi-cart icon text-white" @click="showSidebar = true"></i><span class="qty-badge"
+                        x-text="totalItems"></span> -->
+                </div>
+            </div>
+        </div>
+        <!-- End Top Bar -->
+
+        <div class="branding d-flex align-items-cente">
+            <div class="container position-relative d-flex align-items-center justify-content-between">
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="assets/img/logo.png" alt="" /> -->
+                    <!-- <h1 class="sitename" style="font-size: 2.3rem;">Noken <span>Shop</span></h1> -->
+                </a>
+
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <!-- <li><a href="#hero" class="active">Home</a></li> -->
+                        <!-- <li><a href="#about">About</a></li> -->
+                        <!-- <li><a href="#menu">Jenis Noken</a></li> -->
+                        <!-- <li><a href="#specials">Product</a></li> -->
+                        <!-- <li><a href="#gallery">Gallery</a></li> -->
+                        <!-- <li><a href="#contact">Contact</a></li> -->
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+
+                <!-- Overlay untuk menutup sidebar -->
+                <!-- Overlay untuk menutup sidebar saat klik di luar -->
+
+
+
+
+
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+
+
+        <!-- About Section -->
+        <section id="about" class="about section light-background ">
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Form Login</h2>
+
+            </div>
+            <div class="container d-flex align-items-center justify-content-center ">
+                <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+                    <h1 class="mb-4 text-center fs-4 fw-semibold">Login Admin</h1>
+
+                    <form @submit.prevent="login">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-control" x-model="loginEmail" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <input :type="isPasswordVisible ? 'text' : 'password'" id="password"
+                                    class="form-control" x-model="loginPassword" required>
+                                <button class="btn btn-outline-secondary" type="button"
+                                    @click="togglePasswordVisibility">
+                                    <span x-text="isPasswordVisible ? '🙈' : '👁️'"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100"
+                            @click="login() activePage = 'dashboard'">Login</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- /About Section -->
+    </main>
+
+
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/img/favicon.png" alt="Noken Papua" id="preloader-img">
+    </div>
+
+
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+
+
+    <script src="assets/alpine-js/alpine1.min.js"></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('cartHandler', cartHandler);
+        });
+    </script>
+
+
+</body>
+
+</html>
